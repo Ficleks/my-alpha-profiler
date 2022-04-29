@@ -1,10 +1,15 @@
 import React from "react";
+import Button from "./Button";
 
-import './Header.css';
+import "./Header.css";
 
 const Header = () => {
     return (
-        <h1 className="header">Olá, Fulano</h1>
+        <div className="header">
+            <h1>Olá, Fulano</h1>
+            <Button>Logout</Button>
+        </div>
+
     );
 }
 
