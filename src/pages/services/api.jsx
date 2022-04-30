@@ -5,5 +5,5 @@ export const api = axios.create({
 });
 
 export const createSession = async (email, password) => {
-    return api.post("/signin", { email, password });
+    return api.post("/auth/signin", { email, password });
 }

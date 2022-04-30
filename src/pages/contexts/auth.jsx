@@ -7,14 +7,14 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const recoveredUser = localStorage.getItem("user");
+        const recoveredToken = localStorage.getItem("token");
 
-        if (recoveredUser) {
-            setUser(JSON.parse(recoveredUser));
+        if (recoveredToken) {
+            setToken(recoveredToken);
         }
 
         setLoading(false);
@@ -27,30 +27,30 @@ export const AuthProvider = ({ children }) => {
 
         console.log('login auth', response.data);
 
-        const loggedUser = response.data.user;
+        //const loggedUser = response.data.user;
         const token = response.data.token;
 
-        localStorage.setItem("user", JSON.stringify(loggedUser));
+        //localStorage.setItem("user", JSON.stringify(loggedUser));
         localStorage.setItem("token", token);
 
         api.defaults.headers.Authorization = `Bearer ${token}`
 
-        setUser(loggedUser);
+        setToken(token);
         navigate("/");
     }
 
     const logout = () => {
-        localStorage.removeItem("user");
+        //localStorage.removeItem("user");
         localStorage.removeItem("token");
         api.defaults.headers.Authorization = null;
 
-        setUser(null);
+        setToken(null);
         navigate("/login");
     }
 
     return (
         <AuthContext.Provider
-            value={{ authenticated: !!user, user, loading, login, logout }}
+            value={{ authenticated: !!token, user: token, loading, login, logout }}
         >
             {children}
         </AuthContext.Provider>
