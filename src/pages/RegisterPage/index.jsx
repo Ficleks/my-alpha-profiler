@@ -18,7 +18,7 @@ const RegisterPage = () => {
 
         console.log('register', { name, newDate, email, password });
 
-        register(password, name, email, newDate);
+        register(email, password, newDate, name);
     }
 
     return (

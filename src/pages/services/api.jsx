@@ -17,7 +17,7 @@ export const createSession = async (email, password) => {
     return api.post("/auth/signin", { email, password }, { withCredentials: true });
 }
 
-export const registerNewUser = async (password, name, email, birthday) => {
+export const registerNewUser = async (email, password, birthday, name) => {
     return api.post("/auth/signup",
         {
             name: name,
