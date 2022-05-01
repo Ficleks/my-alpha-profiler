@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import Button from "../../components/Button";
 
 import { AuthContext } from "../contexts/auth";
 import "./styles.css";
@@ -66,7 +67,7 @@ const RegisterPage = () => {
                     />
                 </div>
                 <div className="actions">
-                    <button type="submit">Registrar</button>
+                    <Button type="submit">Registrar</Button>
                 </div>
             </form>
         </div>
