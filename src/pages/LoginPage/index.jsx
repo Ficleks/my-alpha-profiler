@@ -47,11 +47,13 @@ const LoginPage = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div className="actions">
-                    <Button type="submit">Login</Button>
-                </div>
-                <div className="actions">
-                    <button type="button" onClick={handleRegisterClick}>Register</button>
+                <div className="buttons">
+                    <div id="button-login" className="actions">
+                        <Button type="submit">Login</Button>
+                    </div>
+                    <div id="button-register" className="actions">
+                        <Button type="button" onClick={handleRegisterClick}>Register</Button>
+                    </div>
                 </div>
             </form>
         </div>

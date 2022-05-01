@@ -36,7 +36,18 @@
     font-size: 16px;
 }
 
-#login .actions {
+.buttons {
     text-align: center;
     margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#button-login {
+    margin-right: 5px;
+}
+
+#button-register {
+    margin-left: 5px;
 }
