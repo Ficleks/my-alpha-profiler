@@ -47,12 +47,13 @@ export const AuthProvider = ({ children }) => {
 
         console.log('Register Auth', response);
 
-        const loggedUser = response.data.email;
+        //const loggedUser = response.data.email;
         const token = response.data.token;
 
-        localStorage.setItem("user", JSON.stringify(loggedUser));
-        localStorage.setItem("token", token);
-
+        //localStorage.setItem("user", JSON.stringify(loggedUser));
+        //localStorage.setItem("token", token);
+        const dateNow = new Date();
+        document.cookie = `token=${(token || "")}; expires=${dateNow.setTime(dateNow.getTime + (60*60*1000))}; path=/`
         api.defaults.headers.Authorization = `Bearer ${token}`
 
 
