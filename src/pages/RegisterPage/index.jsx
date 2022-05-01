@@ -5,7 +5,7 @@ import { AuthContext } from "../contexts/auth";
 import "./styles.css";
 
 const RegisterPage = () => {
-    const { authenticated, register } = useContext(AuthContext);
+    const { register } = useContext(AuthContext);
 
     const [name, setName] = useState("");
     const [birthday, setBirthday] = useState("");
