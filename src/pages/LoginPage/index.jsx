@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/auth";
 
@@ -6,6 +7,7 @@ import "./styles.css"
 
 const LoginPage = () => {
     const { authenticated, login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,6 +16,10 @@ const LoginPage = () => {
         e.preventDefault();
         console.log('submit', { email, password });
         login(email, password);
+    }
+
+    const handleRegisterClick = () => {
+        navigate("/register");
     }
 
     return (
@@ -43,6 +49,9 @@ const LoginPage = () => {
                 </div>
                 <div className="actions">
                     <button type="submit">Login</button>
+                </div>
+                <div className="actions">
+                    <button type="button" onClick={handleRegisterClick}>Register</button>
                 </div>
             </form>
         </div>

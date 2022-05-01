@@ -27,10 +27,10 @@ export const AuthProvider = ({ children }) => {
 
         console.log('login auth', response.data);
 
-        //const loggedUser = response.data.user;
+        const loggedUser = response.data.email;
         const token = response.data.token;
 
-        //localStorage.setItem("user", JSON.stringify(loggedUser));
+        localStorage.setItem("user", JSON.stringify(loggedUser));
         localStorage.setItem("token", token);
 
         api.defaults.headers.Authorization = `Bearer ${token}`
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const logout = () => {
-        //localStorage.removeItem("user");
+        localStorage.removeItem("user");
         localStorage.removeItem("token");
         api.defaults.headers.Authorization = null;
 
