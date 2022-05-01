@@ -3,14 +3,14 @@ import axios from "axios";
 export const api = axios.create({
     baseURL: "http://localhost:3001",
     headers: {
-        'Content-Type': 'application/json', 
-        'Access-Control-Allow-Origin':'http://localhost:3000',
-        'Access-Control-Allow-Credentials':true,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+        'Access-Control-Allow-Credentials': true,
     }
 });
 
 export const getSession = async () => {
-    return api.get("/user/data", { withCredentials:true });
+    return api.get("/user/data", { withCredentials: true });
 }
 
 export const createSession = async (email, password) => {
@@ -18,12 +18,6 @@ export const createSession = async (email, password) => {
 }
 
 export const registerNewUser = async (password, name, email, birthday) => {
-    console.log({
-        name: name,
-        password: password,
-        email: email,
-        birthday: birthday
-    })
     return api.post("/auth/signup",
         {
             name: name,
