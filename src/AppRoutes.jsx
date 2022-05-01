@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import RegisterPage from "./pages/RegisterPage";
 
 import { AuthProvider, AuthContext } from "./pages/contexts/auth";
+import EditProfilePage from "./pages/EditProfilePage";
 
 const AppRoutes = () => {
     const Private = ({ children }) => {
@@ -34,6 +35,15 @@ const AppRoutes = () => {
                         element={
                             <Private>
                                 <HomePage />
+                            </Private>
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/editprofile"
+                        element={
+                            <Private>
+                                <EditProfilePage />
                             </Private>
                         }
                     />
