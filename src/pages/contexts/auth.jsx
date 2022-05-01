@@ -1,33 +1,31 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession } from "../services/api"
+import { api, createSession, registerNewUser } from "../services/api"
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const recoveredUser = localStorage.getItem("user");
+        const recoveredToken = localStorage.getItem("token");
 
-        if (recoveredUser) {
-            setUser(JSON.parse(recoveredUser));
+        if (recoveredToken) {
+            setToken(recoveredToken);
         }
 
         setLoading(false);
     }, []);
 
-
-
     const login = async (email, password) => {
         const response = await createSession(email, password);
 
-        console.log('login auth', response.data);
+        console.log('login auth', response);
 
-        const loggedUser = response.data.user;
+        const loggedUser = response.data.email;
         const token = response.data.token;
 
         localStorage.setItem("user", JSON.stringify(loggedUser));
@@ -35,7 +33,32 @@ export const AuthProvider = ({ children }) => {
 
         api.defaults.headers.Authorization = `Bearer ${token}`
 
-        setUser(loggedUser);
+        alert(response.data.message);
+
+        setToken(token);
+        navigate("/");
+    }
+
+    const register = async (email, password, birthday, name) => {
+        console.log('entrou no registro')
+        const response = await registerNewUser(email, password, birthday, name);
+
+        alert(response.data.message);
+
+        console.log('Register Auth', response);
+
+        //const loggedUser = response.data.email;
+        const token = response.data.token;
+
+        //localStorage.setItem("user", JSON.stringify(loggedUser));
+        //localStorage.setItem("token", token);
+        const dateNow = new Date();
+        document.cookie = `token=${(token || "")}; expires=${dateNow.setTime(dateNow.getTime + (60*60*1000))}; path=/`
+        api.defaults.headers.Authorization = `Bearer ${token}`
+
+
+
+        setToken(token);
         navigate("/");
     }
 
@@ -44,13 +67,13 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
         api.defaults.headers.Authorization = null;
 
-        setUser(null);
+        setToken(null);
         navigate("/login");
     }
 
     return (
         <AuthContext.Provider
-            value={{ authenticated: !!user, user, loading, login, logout }}
+            value={{ authenticated: !!token, user: token, loading, login, register, logout }}
         >
             {children}
         </AuthContext.Provider>
