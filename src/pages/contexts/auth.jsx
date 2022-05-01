@@ -31,7 +31,8 @@ export const AuthProvider = ({ children }) => {
         //localStorage.setItem("user", JSON.stringify(loggedUser));
         //localStorage.setItem("token", token);
         const dateNow = new Date();
-        document.cookie = `token=${(token || "")}; expires=${dateNow.setTime(dateNow.getTime + (60*60*1000))}; path=/`;
+        dateNow.setTime(dateNow.getTime() + (60*60*1000))
+        document.cookie = `token=${(token || "")}; expires=${dateNow.toUTCString()}; path=/`;
         api.defaults.headers.Authorization = `Bearer ${token}`
 
         alert(response.data.message);
@@ -58,6 +59,9 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        const dateNow = new Date();
+        dateNow.setTime(dateNow.getTime() - (1000))
+        document.cookie = `token=${(token || "")};expires=${dateNow.toUTCString()};path=/`;
         api.defaults.headers.Authorization = null;
 
         setToken(null);
