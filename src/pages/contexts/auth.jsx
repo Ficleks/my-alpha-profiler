@@ -41,25 +41,17 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (email, password, birthday, name) => {
         console.log('entrou no registro')
-        const response = await registerNewUser(email, password, birthday, name);
 
-        alert(response.data.message);
-
-        console.log('Register Auth', response);
-
-        //const loggedUser = response.data.email;
-        const token = response.data.token;
-
-        //localStorage.setItem("user", JSON.stringify(loggedUser));
-        //localStorage.setItem("token", token);
-        const dateNow = new Date();
-        document.cookie = `token=${(token || "")}; expires=${dateNow.setTime(dateNow.getTime + (60*60*1000))}; path=/`
-        api.defaults.headers.Authorization = `Bearer ${token}`
-
-
-
-        setToken(token);
-        navigate("/");
+        try {
+            const response = await registerNewUser(email, password, birthday, name);
+            alert(response.data.message);
+            console.log('Register Auth', response);
+            await login(email, password)
+        } catch (error) {
+            console.log(error);
+            alert(error.response.data.message);
+            //navigate("/");
+        }
     }
 
     const logout = () => {
