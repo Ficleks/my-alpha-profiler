@@ -13,8 +13,11 @@ const RegisterPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('register', { name, birthday, email, password });
-        register(name, birthday, email, password);
+        const newDate = birthday.replace(/-/g, "/");
+
+        console.log('register', { name, newDate, email, password });
+
+        register(password, name, email, newDate);
     }
 
     return (
