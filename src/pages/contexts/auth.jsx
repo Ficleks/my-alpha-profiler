@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession, registerNewUser } from "../services/api"
+import { api, createSession, registerNewUser, getSession } from "../services/api"
 
 export const AuthContext = createContext();
 
@@ -20,6 +20,13 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
     }, []);
 
+    const getCookies = async () => {
+        const response = await getSession();
+
+        console.log("cookies auth", response);
+        return JSON.parse(response);
+    }
+
     const login = async (email, password) => {
         const response = await createSession(email, password);
 
@@ -31,7 +38,7 @@ export const AuthProvider = ({ children }) => {
         //localStorage.setItem("user", JSON.stringify(loggedUser));
         //localStorage.setItem("token", token);
         const dateNow = new Date();
-        dateNow.setTime(dateNow.getTime() + (60*60*1000))
+        dateNow.setTime(dateNow.getTime() + (60 * 60 * 1000))
         document.cookie = `token=${(token || "")}; expires=${dateNow.toUTCString()}; path=/`;
         api.defaults.headers.Authorization = `Bearer ${token}`
 
@@ -70,7 +77,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ authenticated: !!token, user: token, loading, login, register, logout }}
+            value={{ authenticated: !!document.cookie, user: token, loading, getCookies, login, register, logout }}
         >
             {children}
         </AuthContext.Provider>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { AuthContext } from "../contexts/auth";
 import Button from "../../components/Button";
@@ -6,7 +6,19 @@ import Button from "../../components/Button";
 import "./styles.css"
 
 const HomePage = () => {
-    const { logout } = useContext(AuthContext);
+    const { logout, getCookies } = useContext(AuthContext);
+    const [userData, setUserData] = useState("");
+
+    // async function getData() {
+    //     const theUser = await getCookies();
+    //     setUserData(theUser);
+    // }
+
+    // getData();
+
+    getCookies();
+
+    //console.log('user data', userData);
 
     const handleLogout = () => {
         logout();
