@@ -5,13 +5,16 @@
     justify-content: center;
     min-height: 100vh;
     padding: 0 2rem;
+    color: #eee;
 }
 
-#register .form {
-    background-color: #f1f1f1;
+#register form {
     width: 100%;
     max-width: 480px;
     padding: 0.5rem;
+    background-color: #222;
+    border-radius: 5px;
+    border: 2px solid chartreuse;
 }
 
 #register .field {
@@ -24,6 +27,13 @@
 
 #register .field input {
     width: 100%;
+    background-color: #444;
+    color: #eee;
+    height: 40px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
 }
 
 #register .actions {
