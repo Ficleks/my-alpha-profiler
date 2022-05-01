@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 import "./styles.css"
 
 const HomePage = () => {
-    const { authenticated, logout } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
 
     const handleLogout = () => {
         logout();

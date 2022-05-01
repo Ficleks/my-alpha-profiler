@@ -7,7 +7,7 @@ import { AuthContext } from "../contexts/auth";
 import "./styles.css"
 
 const LoginPage = () => {
-    const { authenticated, login } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
