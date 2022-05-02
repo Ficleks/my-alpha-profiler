@@ -46,18 +46,6 @@ export const getSession = async () => {
         .then(resp => resp.text());
 }
 
-/* export const editProfile = async (password, name, email, birthday, image) => {
-    return api.put("/user/edit",
-        {
-            name: name,
-            password: password,
-            email: email,
-            birthday: birthday,
-            photo: image
-        },  { withCredentials: true }
-    );
-} */
-
 export const editPhoto = async (image) => {
 
     const userData =
@@ -69,17 +57,17 @@ export const editPhoto = async (image) => {
 
         method: 'PUT',
         headers: {
-        Accept: 'application/json',
-             'Content-Type': 'application/json',
-             'Access-Control-Allow-Origin': 'http://localhost:3000',
-             'Access-Control-Allow-Credentials': true
-         },
-         credentials: 'include',
-         body: JSON.stringify(userData)
-     };
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true
+        },
+        credentials: 'include',
+        body: JSON.stringify(userData)
+    };
 
-     return await fetch(apiUrl + '/user/editphoto', requestOptions)
-         .then(resp => resp.text());
+    return await fetch(apiUrl + '/user/editphoto', requestOptions)
+        .then(resp => resp.text());
 }
 
 export const editProfile = async (password, name, email, birthday) => {
@@ -96,15 +84,32 @@ export const editProfile = async (password, name, email, birthday) => {
 
         method: 'PUT',
         headers: {
-        Accept: 'application/json',
-             'Content-Type': 'application/json',
-             'Access-Control-Allow-Origin': 'http://localhost:3000',
-             'Access-Control-Allow-Credentials': true
-         },
-         credentials: 'include',
-         body: JSON.stringify(userData)
-     };
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true
+        },
+        credentials: 'include',
+        body: JSON.stringify(userData)
+    };
 
-     return await fetch(apiUrl + '/user/edit', requestOptions)
-         .then(resp => resp.text());
+    return await fetch(apiUrl + '/user/edit', requestOptions)
+        .then(resp => resp.text());
 }
+
+export const delProfile = async () => {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true
+        },
+        credentials: 'include',
+    };
+
+    return await fetch(apiUrl + '/user/del', requestOptions)
+        .then(resp => resp.text());
+}
+

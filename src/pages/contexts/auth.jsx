@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession, registerNewUser, editProfile, getSession } from "../services/api"
+import { api, createSession, registerNewUser, editProfile, getSession, delProfile } from "../services/api"
 
 export const AuthContext = createContext();
 
@@ -101,13 +101,24 @@ export const AuthProvider = ({ children }) => {
         navigate("/login");
     }
 
+    const deleteProfile = async () => {
+        try {
+            const response = await delProfile();
+            console.log(response.message);
+            alert(response.message);
+            logout();
+        } catch (error) {
+            alert(error)
+        }
+    }
+
     return (
         <AuthContext.Provider
             value={
-                { 
-                    authenticated: !!document.cookie, 
-                    session: session, 
-                    loading, saveEditProfile, getCookies, login, register, logout 
+                {
+                    authenticated: !!document.cookie,
+                    session: session,
+                    loading, saveEditProfile, getCookies, login, register, logout, deleteProfile
                 }
             }
         >

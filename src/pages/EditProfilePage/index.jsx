@@ -7,7 +7,7 @@ import { AuthContext } from "../contexts/auth";
 import "./styles.css"
 
 const EditProfilePage = () => {
-    const { session, saveEditProfile } = useContext(AuthContext);
+    const { session, saveEditProfile, deleteProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -38,7 +38,8 @@ const EditProfilePage = () => {
     }
 
     const handleDeleteClick = (e) => {
-        console.log('entrou delete')
+        e.preventDefault();
+        deleteProfile();
     }
 
     return (
