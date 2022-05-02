@@ -47,18 +47,16 @@ const EditProfilePage = () => {
         const file = event.target.files[0];
         console.log(file);
         //const fileSize = imageFile.size_of_image(file);
-        
-        if(file.size/1024 < 2000)
-        {
+
+        if (file.size / 1024 < 2000) {
             console.log("Imagem pronta!");
             const finalFile = await imageFile.process_image(file);
             saveEditPhoto(finalFile);
             //setImage(finalFile);
             //finalFile file.name
-            
-        } 
-        else
-        {
+
+        }
+        else {
             console.log(event.target.files);
             event.target.value = "";
         }
@@ -122,9 +120,9 @@ const EditProfilePage = () => {
                         <img
                             alt="avatar"
                             className="my-img"
-                            src="https://www.pngall.com/wp-content/uploads/12/Avatar-PNG-Image.png"
+                            src={session.photo}
                         />
-                        <input type="file" onChange={changeImgHandler}/>
+                        <input type="file" onChange={changeImgHandler} />
                     </div>
                 </div>
             </div>
