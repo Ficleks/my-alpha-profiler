@@ -1,10 +1,10 @@
 function calc_image_size(image) {
     let y = 1;
     if (image.endsWith('==')) {
-        y = 2
+        y = 2;
     }
-    const x_size = (image.length * (3 / 4)) - y
-    return Math.round(x_size / 1024)
+    const x_size = (image.length * (3 / 4)) - y;
+    return Math.round(x_size / 1024);
 }
 
 async function reduce_image_file_size(base64Str, MAX_WIDTH = 450, MAX_HEIGHT = 450) {
@@ -73,7 +73,9 @@ async function process_image(file, min_image_size = 300) {
 
 async function size_of_image(file) {
     const base64 = await image_to_base64(file);
-    return calc_image_size(base64);
+    const size = calc_image_size(base64);
+    console.log(size, base64.length);
+    return size;
 }
 
 export default { size_of_image, process_image };
