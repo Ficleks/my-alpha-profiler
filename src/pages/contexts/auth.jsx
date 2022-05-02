@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
             //alert(response.data.message);
             console.log('edit Auth', response);
             getCookies();
-            navigate("/");
+            //navigate("/");
         } catch (error) {
             console.log(error);
             alert(error.response.data.message);
@@ -137,7 +137,7 @@ export const AuthProvider = ({ children }) => {
                 {
                     authenticated: !!document.cookie,
                     session: session,
-                    loading, saveEditProfile, getCookies, login, register, logout, deleteProfile, editPhoto
+                    loading, saveEditProfile, getCookies, login, register, logout, deleteProfile, saveEditPhoto
                 }
             }
         >
