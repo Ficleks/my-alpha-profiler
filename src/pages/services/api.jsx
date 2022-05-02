@@ -43,7 +43,7 @@ export const getSession = async () => {
     };
 
     return await fetch(apiUrl + '/user/data', requestOptions)
-        .then(resp => resp.text());
+        .then(resp => resp.text()).catch(err => err);
 }
 
 export const exitSession = async () => {
@@ -59,7 +59,7 @@ export const exitSession = async () => {
     };
 
     return await fetch(apiUrl + '/auth/signout', requestOptions)
-        .then(resp => resp.text());
+        .then(resp => resp.json());
 }
 /* export const editProfile = async (password, name, email, birthday, image) => {
     return api.put("/user/edit",
@@ -94,7 +94,7 @@ export const editPhoto = async (image) => {
     };
 
     return await fetch(apiUrl + '/user/editphoto', requestOptions)
-        .then(resp => resp.text());
+        .then(resp => resp.json());
 }
 
 export const editProfile = async (password, name, email, birthday) => {
@@ -121,7 +121,7 @@ export const editProfile = async (password, name, email, birthday) => {
     };
 
     return await fetch(apiUrl + '/user/edit', requestOptions)
-        .then(resp => resp.text());
+        .then(resp => resp.json());
 }
 
 export const delProfile = async () => {

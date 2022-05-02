@@ -40,8 +40,10 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await editProfile(password, name, email, birthday);
             //alert(response.data.message);
-            console.log('edit Auth', response);
+            
             getCookies();
+            console.log('edit Auth', response);
+            alert(response.message);
             navigate("/");
         } catch (error) {
             console.log(error);
@@ -54,8 +56,9 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await editPhoto(image);
             //alert(response.data.message);
-            console.log('edit Auth', response);
             getCookies();
+            console.log('edit Auth', response);
+            alert(response.message);
             //navigate("/");
         } catch (error) {
             console.log(error);
@@ -104,15 +107,12 @@ export const AuthProvider = ({ children }) => {
     }
 
     const logout = async () => {
-        //localStorage.removeItem("user");
-        //localStorage.removeItem("token");
         await exitSession();
 
         const dateNow = new Date();
         dateNow.setTime(dateNow.getTime() - (1000))
         document.cookie = `token=;expires=${dateNow.toUTCString()};path=/`;
         api.defaults.headers.Authorization = null;
-        //setToken(null);
         navigate("/login");
     }
 
