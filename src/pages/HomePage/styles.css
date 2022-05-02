@@ -11,6 +11,13 @@ body {
     padding: 10px;
 }
 
+.head img {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 10px;
+    border-radius: 30px;
+}
+
 button {
     margin-left: 20px;
 }
