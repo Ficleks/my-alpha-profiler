@@ -58,6 +58,30 @@ export const getSession = async () => {
     );
 } */
 
+export const editPhoto = async (image) => {
+
+    const userData =
+    {
+        photo: image
+    }
+
+    const requestOptions = {
+
+        method: 'PUT',
+        headers: {
+        Accept: 'application/json',
+             'Content-Type': 'application/json',
+             'Access-Control-Allow-Origin': 'http://localhost:3000',
+             'Access-Control-Allow-Credentials': true
+         },
+         credentials: 'include',
+         body: JSON.stringify(userData)
+     };
+
+     return await fetch(apiUrl + '/user/editphoto', requestOptions)
+         .then(resp => resp.text());
+}
+
 export const editProfile = async (password, name, email, birthday, image) => {
 
     const userData =

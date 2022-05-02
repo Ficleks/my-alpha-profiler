@@ -78,4 +78,4 @@ async function size_of_image(file) {
     return size;
 }
 
-export default { size_of_image, process_image };
+export default { size_of_image, calc_image_size, process_image, image_to_base64 };
