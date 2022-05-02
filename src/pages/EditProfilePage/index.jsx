@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button";
 import { AuthContext } from "../contexts/auth";
+import imageFile from "../../scripts/imageFile.js"
 
 import "./styles.css"
 
 const EditProfilePage = () => {
-    const { session, saveEditProfile, deleteProfile } = useContext(AuthContext);
+    const { session, saveEditProfile, deleteProfile, saveEditPhoto } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -41,6 +42,27 @@ const EditProfilePage = () => {
         e.preventDefault();
         deleteProfile();
     }
+
+    const changeImgHandler = async (event) => {
+        const file = event.target.files[0];
+        console.log(file);
+        //const fileSize = imageFile.size_of_image(file);
+        
+        if(file.size/1024 < 2000)
+        {
+            console.log("Imagem pronta!");
+            const finalFile = await imageFile.process_image(file);
+            saveEditPhoto(finalFile);
+            //setImage(finalFile);
+            //finalFile file.name
+            
+        } 
+        else
+        {
+            console.log(event.target.files);
+            event.target.value = "";
+        }
+    };
 
     return (
         <div className="edit-container-body">
@@ -102,7 +124,7 @@ const EditProfilePage = () => {
                             className="my-img"
                             src="https://www.pngall.com/wp-content/uploads/12/Avatar-PNG-Image.png"
                         />
-                        <input type="file" />
+                        <input type="file" onChange={changeImgHandler}/>
                     </div>
                 </div>
             </div>
