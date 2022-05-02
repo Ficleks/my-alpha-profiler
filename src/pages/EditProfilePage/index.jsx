@@ -29,7 +29,7 @@ const EditProfilePage = () => {
 
         console.log('Edit', { name, birthday, email, password });
 
-        saveEditProfile(email, password, birthday, name);
+        saveEditProfile(password, name, email, birthday, image);
     }
 
     const handleBackHomeClick = (e) => {

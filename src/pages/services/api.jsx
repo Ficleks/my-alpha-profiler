@@ -47,29 +47,41 @@ export const getSession = async () => {
 }
 
 export const editProfile = async (password, name, email, birthday, image) => {
-
-    const userData =
-    {
-        name: name,
-        password: password,
-        email: email,
-        birthday: birthday,
-        photo: image
-    }
-
-    const requestOptions = {
-
-        method: 'PUT',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Credentials': true
-        },
-        credentials: 'include',
-        body: JSON.stringify(userData)
-    };
-
-    return await fetch(apiUrl + '/user/edit', requestOptions)
-        .then(resp => resp.text());
+    return api.put("/user/edit",
+        {
+            name: name,
+            password: password,
+            email: email,
+            birthday: birthday,
+            photo: image
+        }
+    );
 }
+
+// export const editProfile = async (password, name, email, birthday, image) => {
+
+//     const userData =
+//     {
+//         name: name,
+//         password: password,
+//         email: email,
+//         birthday: birthday,
+//         photo: image
+//     }
+
+//     const requestOptions = {
+
+//         method: 'PUT',
+//         headers: {
+//             Accept: 'application/json',
+//             'Content-Type': 'application/json',
+//             'Access-Control-Allow-Origin': 'http://localhost:3000',
+//             'Access-Control-Allow-Credentials': true
+//         },
+//         credentials: 'include',
+//         body: JSON.stringify(userData)
+//     };
+
+//     return await fetch(apiUrl + '/user/edit', requestOptions)
+//         .then(resp => resp.text());
+// }
