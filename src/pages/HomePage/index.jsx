@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 
-import imageFile from "../../scripts/imageFile"
 import { AuthContext } from "../contexts/auth";
 import Button from "../../components/Button";
 
@@ -30,25 +29,18 @@ const HomePage = () => {
         getCookies();
         logout();
     }
-    /* const [selectedFile, setSelectedFile] = useState();
-    const changeImgHandler = (event) => {
-        const file = event.target.files[0];
-        //console.log(imageFile);
-        imageFile.loadImage(file);
-        setSelectedFile(file);
-        //setIsSelected(true);
-    }; */
+    /*  */
 
     const userName = session.name;//"Fulano";
 
     return (
         <div className="container">
             <div className="head">
-                <h1>Olá, {userName}!</h1>
+                <img src={session.photo} width="64"/>
+                <h1>Olá, {userName}!</h1>     
                 <div>
                     <Button onClick={handleEdit}>Editar</Button>
                     <Button onClick={handleLogout}>Logout</Button>
-                    {/* <input type="file" name="file" onChange={changeImgHandler} /> */}
                 </div>
             </div>
             <div className="user-profile">
