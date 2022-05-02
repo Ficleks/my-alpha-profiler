@@ -121,7 +121,11 @@ export const AuthProvider = ({ children }) => {
             const response = await delProfile();
 
             alert(response.message);
-            logout();
+            const dateNow = new Date();
+            dateNow.setTime(dateNow.getTime() - (1000))
+            document.cookie = `token=;expires=${dateNow.toUTCString()};path=/`;
+
+            navigate("/login");
         } catch (error) {
             alert(error)
         }
@@ -133,7 +137,7 @@ export const AuthProvider = ({ children }) => {
                 {
                     authenticated: !!document.cookie,
                     session: session,
-                    loading, saveEditProfile, getCookies, login, register, logout, deleteProfile
+                    loading, saveEditProfile, getCookies, login, register, logout, deleteProfile, editPhoto
                 }
             }
         >
