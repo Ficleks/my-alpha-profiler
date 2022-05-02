@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { AuthContext } from "../contexts/auth";
 import imageFile from "../../scripts/imageFile.js"
+import pic from "../../assets/avatar.png";
 
 import "./styles.css"
 
@@ -21,7 +22,8 @@ const EditProfilePage = () => {
         setName(session.name);
         setEmail(session.email);
         setBirthday(session.birthday);
-        setImage("");
+
+        ifImageExist(image);
     }, [session])
 
     const handleSubmit = (e) => {
@@ -61,6 +63,14 @@ const EditProfilePage = () => {
             event.target.value = "";
         }
     };
+
+    function ifImageExist(image) {
+        if (!image) {
+            setImage(pic);
+        } else {
+            setImage(session.photo);
+        }
+    }
 
     return (
         <div className="edit-container-body">
@@ -120,7 +130,7 @@ const EditProfilePage = () => {
                         <img
                             alt="avatar"
                             className="my-img"
-                            src={session.photo}
+                            src={image}
                         />
                         <input type="file" onChange={changeImgHandler} />
                     </div>
