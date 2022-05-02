@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
             getCookies();
             console.log('edit Auth', response);
             alert(response.message);
-            navigate("/");
+            //navigate("/");
         } catch (error) {
             console.log(error);
             alert(error.response.data.message);
