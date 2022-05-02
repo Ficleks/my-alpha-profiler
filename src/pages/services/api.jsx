@@ -137,6 +137,6 @@ export const delProfile = async () => {
     };
 
     return await fetch(apiUrl + '/user/del', requestOptions)
-        .then(resp => resp.text());
+        .then(resp => resp.json());
 }
 

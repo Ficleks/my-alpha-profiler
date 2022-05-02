@@ -119,7 +119,7 @@ export const AuthProvider = ({ children }) => {
     const deleteProfile = async () => {
         try {
             const response = await delProfile();
-            console.log(response.message);
+
             alert(response.message);
             logout();
         } catch (error) {
