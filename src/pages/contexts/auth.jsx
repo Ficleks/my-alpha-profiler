@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession, registerNewUser, getSession } from "../services/api"
+import { api, createSession, registerNewUser, editProfile, getSession } from "../services/api"
 
 export const AuthContext = createContext();
 
@@ -27,6 +27,20 @@ export const AuthProvider = ({ children }) => {
         setSession(session);
         console.log("cookies auth", response);
         return session;
+    }
+
+    const saveEditProfile = async (password, name, email, birthday) => {
+        console.log('entrou no editar')
+        try {
+            const response = await editProfile(password, name, email, birthday);
+            alert(response.data.message);
+            console.log('Register Auth', response);
+            await login(email, password)
+        } catch (error) {
+            console.log(error);
+            alert(error.response.data.message);
+            //navigate("/");
+        }
     }
 
     const login = async (email, password) => {

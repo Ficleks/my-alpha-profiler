@@ -51,3 +51,19 @@ export const getSession = async () => {
     return await fetch(apiUrl + '/user/data', requestOptions)
         .then(resp => resp.text());
 }
+
+export const editProfile = async () => {
+    const requestOptions = {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true
+        },
+        credentials: 'include',
+    };
+
+    return await fetch(apiUrl + '/user/edit', requestOptions)
+        .then(resp => resp.text());
+}
