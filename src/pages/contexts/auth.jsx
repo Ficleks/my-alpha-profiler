@@ -7,8 +7,9 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
-    const [token, setToken] = useState(null);
-    const [session, setSession] = useState({ name: "None", data: "00/00/0000", photo: "", uuid: "" });
+    //const [token, setToken] = useState(null);
+    const defaultSession = { name: "None", data: "00/00/0000", photo: "", uuid: "" };
+    const [session, setSession] = useState(defaultSession);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -22,11 +23,16 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const getCookies = async () => {
-        const response = await getSession();
-        const session = JSON.parse(response);
-        setSession(session);
-        console.log("cookies auth", response);
-        return session;
+        try {
+            const response = await getSession();
+            const session = JSON.parse(response);
+            setSession(session);
+            console.log("cookies auth", response);
+        } catch (error) {
+            console.log(error);
+            setSession(defaultSession);
+            alert(error.response.data.message);
+        }
     }
 
     const saveEditProfile = async (password, name, email, birthday, image) => {
@@ -35,11 +41,11 @@ export const AuthProvider = ({ children }) => {
             const response = await editProfile(password, name, email, birthday, image);
             //alert(response.data.message);
             console.log('edit Auth', response);
-            //await login(email, password)
+            getCookies();
+            navigate("/");
         } catch (error) {
             console.log(error);
-            //alert(error.response.data.message);
-            //navigate("/");
+            alert(error.response.data.message);
         }
     }
 
@@ -84,14 +90,14 @@ export const AuthProvider = ({ children }) => {
     }
 
     const logout = () => {
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
+        //localStorage.removeItem("user");
+        //localStorage.removeItem("token");
         const dateNow = new Date();
         dateNow.setTime(dateNow.getTime() - (1000))
-        document.cookie = `token=${(token || "")};expires=${dateNow.toUTCString()};path=/`;
+        document.cookie = `token=;expires=${dateNow.toUTCString()};path=/`;
         api.defaults.headers.Authorization = null;
 
-        setToken(null);
+        //setToken(null);
         navigate("/login");
     }
 
