@@ -30,7 +30,12 @@ export const AuthProvider = ({ children }) => {
             console.log("cookies auth", response);
         } catch (error) {
             console.log(error);
+            
+            const dateNow = new Date();
+            dateNow.setTime(dateNow.getTime() - (1000))
+            document.cookie = `token=;expires=${dateNow.toUTCString()};path=/`;
             setSession(defaultSession);
+            navigate("/login");
             alert(error.response.data.message);
         }
     }
