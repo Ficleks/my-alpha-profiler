@@ -82,7 +82,7 @@ export const editPhoto = async (image) => {
          .then(resp => resp.text());
 }
 
-export const editProfile = async (password, name, email, birthday, image) => {
+export const editProfile = async (password, name, email, birthday) => {
 
     const userData =
     {
@@ -90,7 +90,6 @@ export const editProfile = async (password, name, email, birthday, image) => {
         password: password,
         email: email,
         birthday: birthday,
-        photo: image
     }
 
     const requestOptions = {
