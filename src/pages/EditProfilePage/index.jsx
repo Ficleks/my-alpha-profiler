@@ -14,18 +14,22 @@ const EditProfilePage = () => {
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
     const [password, setPassword] = useState("");
+    const [image, setImage] = useState("");
 
     useEffect(() => {
-        console.log(session)
-    })
+        setName(session.name);
+        setEmail(session.email);
+        setBirthday(session.birthday);
+        setImage("");
+    }, [session])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newDate = birthday.replace(/-/g, "/");
+        //const newDate = birthday.replace(/-/g, "/");
 
-        console.log('Edit', { name, newDate, email, password });
+        console.log('Edit', { name, birthday, email, password });
 
-        saveEditProfile(email, password, newDate, name);
+        saveEditProfile(email, password, birthday, name);
     }
 
     const handleBackHomeClick = (e) => {
@@ -79,6 +83,16 @@ const EditProfilePage = () => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="image">Imagem</label>
+                        <input
+                            type="text"
+                            name="image"
+                            id="image"
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
                         />
                     </div>
                     <div className="actions">

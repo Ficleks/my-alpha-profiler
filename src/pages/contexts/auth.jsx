@@ -29,16 +29,16 @@ export const AuthProvider = ({ children }) => {
         return session;
     }
 
-    const saveEditProfile = async (password, name, email, birthday) => {
+    const saveEditProfile = async (password, name, email, birthday, image) => {
         console.log('entrou no editar')
         try {
-            const response = await editProfile(password, name, email, birthday);
-            alert(response.data.message);
-            console.log('Register Auth', response);
-            await login(email, password)
+            const response = await editProfile(password, name, email, birthday, image);
+            //alert(response.data.message);
+            console.log('edit Auth', response);
+            //await login(email, password)
         } catch (error) {
             console.log(error);
-            alert(error.response.data.message);
+            //alert(error.response.data.message);
             //navigate("/");
         }
     }
@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ authenticated: !!document.cookie, session: session, user: token, loading, getCookies, login, register, logout }}
+            value={{ authenticated: !!document.cookie, session: session, user: token, loading, saveEditProfile, getCookies, login, register, logout }}
         >
             {children}
         </AuthContext.Provider>

@@ -20,12 +20,6 @@ export const createSession = async (email, password) => {
 }
 
 export const registerNewUser = async (password, name, email, birthday) => {
-    console.log({
-        name: name,
-        password: password,
-        email: email,
-        birthday: birthday
-    })
     return api.post("/auth/signup",
         {
             name: name,
@@ -52,8 +46,19 @@ export const getSession = async () => {
         .then(resp => resp.text());
 }
 
-export const editProfile = async () => {
+export const editProfile = async (password, name, email, birthday, image) => {
+
+    const userData =
+    {
+        name: name,
+        password: password,
+        email: email,
+        birthday: birthday,
+        photo: image
+    }
+
     const requestOptions = {
+
         method: 'PUT',
         headers: {
             Accept: 'application/json',
@@ -62,6 +67,7 @@ export const editProfile = async () => {
             'Access-Control-Allow-Credentials': true
         },
         credentials: 'include',
+        body: JSON.stringify(userData)
     };
 
     return await fetch(apiUrl + '/user/edit', requestOptions)
