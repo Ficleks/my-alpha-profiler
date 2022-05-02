@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession, registerNewUser, editProfile, getSession, delProfile } from "../services/api"
+import { api, createSession, registerNewUser, editProfile, getSession, delProfile, exitSession } from "../services/api"
 
 export const AuthContext = createContext();
 
@@ -89,14 +89,15 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const logout = () => {
+    const logout = async () => {
         //localStorage.removeItem("user");
         //localStorage.removeItem("token");
+        await exitSession();
+
         const dateNow = new Date();
         dateNow.setTime(dateNow.getTime() - (1000))
         document.cookie = `token=;expires=${dateNow.toUTCString()};path=/`;
         api.defaults.headers.Authorization = null;
-
         //setToken(null);
         navigate("/login");
     }

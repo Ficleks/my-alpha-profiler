@@ -46,6 +46,33 @@ export const getSession = async () => {
         .then(resp => resp.text());
 }
 
+export const exitSession = async () => {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true
+        },
+        credentials: 'include',
+    };
+
+    return await fetch(apiUrl + '/auth/signout', requestOptions)
+        .then(resp => resp.text());
+}
+/* export const editProfile = async (password, name, email, birthday, image) => {
+    return api.put("/user/edit",
+        {
+            name: name,
+            password: password,
+            email: email,
+            birthday: birthday,
+            photo: image
+        },  { withCredentials: true }
+    );
+} */
+
 export const editPhoto = async (image) => {
 
     const userData =
