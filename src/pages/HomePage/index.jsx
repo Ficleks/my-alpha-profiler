@@ -8,7 +8,7 @@ import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-    const { logout, session } = useContext(AuthContext);
+    const { logout, session, getCookies } = useContext(AuthContext);
     const navigate = useNavigate();
     // async function getData() {
     //     const theUser = await getCookies();
@@ -22,10 +22,12 @@ const HomePage = () => {
     //console.log('user data', userData);
 
     const handleEdit = () => {
+        getCookies();
         navigate("/editprofile");
     }
 
     const handleLogout = () => {
+        getCookies();
         logout();
     }
     /* const [selectedFile, setSelectedFile] = useState();

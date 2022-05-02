@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 import LoginPage from './pages/LoginPage';
@@ -11,6 +11,11 @@ import EditProfilePage from "./pages/EditProfilePage";
 const AppRoutes = () => {
     const Private = ({ children }) => {
         const { authenticated, loading } = useContext(AuthContext);
+
+        useEffect(() => {
+            // call api or anything
+            console.log("loaded");
+        });
 
         if (loading) {
             return <div className="loading">Carregando...</div>

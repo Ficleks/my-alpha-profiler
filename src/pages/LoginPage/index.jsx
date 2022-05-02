@@ -7,7 +7,7 @@ import { AuthContext } from "../contexts/auth";
 import "./styles.css"
 
 const LoginPage = () => {
-    const { login } = useContext(AuthContext);
+    const { login, getCookies } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
@@ -19,6 +19,7 @@ const LoginPage = () => {
     }
 
     const handleRegisterClick = () => {
+        
         navigate("/register");
     }
 

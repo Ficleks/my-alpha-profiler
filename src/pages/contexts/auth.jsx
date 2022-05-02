@@ -12,11 +12,11 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const recoveredToken = localStorage.getItem("token");
+        //const recoveredToken = localStorage.getItem("token");
         getCookies();
-        if (recoveredToken) {
+        /* if (recoveredToken) {
             setToken(recoveredToken);
-        }
+        } */
 
         setLoading(false);
     }, []);
@@ -57,11 +57,11 @@ export const AuthProvider = ({ children }) => {
             const dateNow = new Date();
             dateNow.setTime(dateNow.getTime() + (60 * 60 * 1000));
             document.cookie = `token=${(token || "")}; expires=${dateNow.toUTCString()}; path=/`;
-            api.defaults.headers.Authorization = `Bearer ${token}`
+            //api.defaults.headers.Authorization = `Bearer ${token}`
 
             alert(response.data.message);
-
-            setToken(token);
+            getCookies();
+            //setToken(token);
             navigate("/");
         } catch (error) {
             console.log(error);
@@ -97,7 +97,13 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ authenticated: !!document.cookie, session: session, user: token, loading, saveEditProfile, getCookies, login, register, logout }}
+            value={
+                { 
+                    authenticated: !!document.cookie, 
+                    session: session, 
+                    loading, saveEditProfile, getCookies, login, register, logout 
+                }
+            }
         >
             {children}
         </AuthContext.Provider>
