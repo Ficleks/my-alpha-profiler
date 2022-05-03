@@ -1,15 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api, createSession, registerNewUser, editProfile, getSession, delProfile, exitSession, editPhoto } from "../services/api"
+import { api, createSession, registerNewUser, editProfile, getSession, delProfile, exitSession, editPhoto, getPhoto } from "../services/api"
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     //const [token, setToken] = useState(null);
-    const defaultSession = { name: "None", data: "00/00/0000", photo: "", uuid: "" };
+    const defaultSession = { name: "None", data: "00/00/0000", uuid: "" };
     const [session, setSession] = useState(defaultSession);
+    const [photo, setPhoto] = useState("");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
             const response = await getSession();
             const session = JSON.parse(response);
             setSession(session);
+            loadPhoto();
             console.log("cookies auth", response);
         } catch (error) {
             console.log(error);
@@ -35,6 +37,25 @@ export const AuthProvider = ({ children }) => {
             dateNow.setTime(dateNow.getTime() - (1000))
             document.cookie = `token=;expires=${dateNow.toUTCString()};path=/`;
             setSession(defaultSession);
+            navigate("/login");
+            alert(error.response.data.message);
+        }
+    }
+
+    const loadPhoto = async () => {
+        try {
+            const response = await getPhoto();
+            //console.log(response);
+            const { photo:photoImg, message } = JSON.parse(response);
+            setPhoto(photoImg);
+            console.log("foto ", message);
+        } catch (error) {
+            console.log(error);
+            
+            const dateNow = new Date();
+            dateNow.setTime(dateNow.getTime() - (1000))
+            document.cookie = `token=;expires=${dateNow.toUTCString()};path=/`;
+            setPhoto("");
             navigate("/login");
             alert(error.response.data.message);
         }
@@ -141,8 +162,8 @@ export const AuthProvider = ({ children }) => {
             value={
                 {
                     authenticated: !!document.cookie,
-                    session: session,
-                    loading, saveEditProfile, getCookies, login, register, logout, deleteProfile, saveEditPhoto
+                    session: session, photo,
+                    loading, saveEditProfile, getCookies, login, register, logout, deleteProfile, saveEditPhoto, loadPhoto
                 }
             }
         >

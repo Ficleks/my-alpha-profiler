@@ -7,7 +7,7 @@ import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-    const { logout, session, getCookies } = useContext(AuthContext);
+    const { logout, session, photo, getCookies } = useContext(AuthContext);
     const navigate = useNavigate();
     // async function getData() {
     //     const theUser = await getCookies();
@@ -36,7 +36,7 @@ const HomePage = () => {
     return (
         <div className="container">
             <div className="head">
-                <img src={session.photo} width="64"/>
+                <img src={photo} width="64"/>
                 <h1>Olá, {userName}!</h1>     
                 <div>
                     <Button onClick={handleEdit}>Editar</Button>

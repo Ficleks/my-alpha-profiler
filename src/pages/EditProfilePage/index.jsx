@@ -9,7 +9,7 @@ import pic from "../../assets/avatar.png";
 import "./styles.css"
 
 const EditProfilePage = () => {
-    const { session, saveEditProfile, deleteProfile, saveEditPhoto } = useContext(AuthContext);
+    const { session, photo, saveEditProfile, deleteProfile, saveEditPhoto } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -22,9 +22,8 @@ const EditProfilePage = () => {
         setName(session.name);
         setEmail(session.email);
         setBirthday(session.birthday);
-
-        ifImageExist(image);
-    }, [session])
+        setImage(photo);
+    }, [session, photo])
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -46,6 +46,22 @@ export const getSession = async () => {
         .then(resp => resp.text()).catch(err => err);
 }
 
+export const getPhoto = async () => {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true
+        },
+        credentials: 'include',
+    };
+
+    return await fetch(apiUrl + '/user/photo', requestOptions)
+        .then(resp => resp.text()).catch(err => err);
+}
+
 export const exitSession = async () => {
     const requestOptions = {
         method: 'POST',
