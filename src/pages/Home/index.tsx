@@ -1,4 +1,4 @@
-import { Title } from "./styles";
+import { Links, Title } from "./styles";
 
 
 export const Home = () => {
@@ -11,8 +11,13 @@ export const Home = () => {
           <p><strong>Email:</strong> ficlek13@hotmail.com</p>
           <p><strong>Data:</strong> 01/03/1998</p>
           <p><strong>Senha:</strong> *********</p>
-        </section>
+        </section>        
     </Title>
+    <Links>
+      <p>Acesso á: <a href="http://localhost:3000/signin">SignIn</a></p>
+      <p>Acesso á: <a href="http://localhost:3000/editprofile">EditProfile</a></p>
+      <p>Acesso á: <a href="http://localhost:3000/signup">SignUp</a></p>
+    </Links>
   </div>
   )
 };

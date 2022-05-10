@@ -7,4 +7,10 @@ export default createGlobalStyle`
         background: #caf7cd;
         font-family: Arial, Helvetica, sans-serif;
     }
+    h1{
+    color: #00c400;
+    text-align: center;
+    font-size: 75px;
+    font-weight: bold;
+    }
 `

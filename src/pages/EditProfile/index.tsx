@@ -1,3 +1,3 @@
 export const EditProfile = () => {
-  return <h1>Essa e a EditProfile</h1>;
+  return <h1>EditProfile</h1>;
 };

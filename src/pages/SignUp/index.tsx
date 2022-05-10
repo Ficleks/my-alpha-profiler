@@ -1,3 +1,3 @@
 export const SignUp = () => {
-  return <h1>Essa e a SignUp</h1>;
+  return <h1>SignUp</h1>;
 };

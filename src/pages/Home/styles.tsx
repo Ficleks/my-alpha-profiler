@@ -7,7 +7,6 @@ export const Title = styled.div`
     h1{
     color: #00c400;
     text-align: center;
-    text-shadow: 2px 2px 5px grey;
     font-size: 75px;
     font-weight: bold;
     }
@@ -22,5 +21,11 @@ export const Title = styled.div`
     }
     p{
         padding-left: 25px;
+    }
+`
+
+export const Links = styled.div`
+    p{
+        text-align: center;
     }
 `
