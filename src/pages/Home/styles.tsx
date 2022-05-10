@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
-export const Title = styled.div`
-    div{
-        background-color:blue;
-    }
+export const Box = styled.div`
     h1{
     color: #00c400;
     text-align: center;

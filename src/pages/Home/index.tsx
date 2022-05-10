@@ -1,10 +1,10 @@
-import { Links, Title } from "./styles";
+import { Links, Box } from "./styles";
 
 
 export const Home = () => {
   return (
   <div>
-    <Title>
+    <Box>
       <h1>Home</h1>
         <section>
           <p><strong>Usuário:</strong> Felipe Alan</p>
@@ -12,7 +12,7 @@ export const Home = () => {
           <p><strong>Data:</strong> 01/03/1998</p>
           <p><strong>Senha:</strong> *********</p>
         </section>        
-    </Title>
+    </Box>
     <Links>
       <p>Acesso á: <a href="http://localhost:3000/signin">SignIn</a></p>
       <p>Acesso á: <a href="http://localhost:3000/editprofile">EditProfile</a></p>
