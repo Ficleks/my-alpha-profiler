@@ -26,3 +26,8 @@ export const Links = styled.div`
         text-align: center;
     }
 `
+export const SectionHome = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`

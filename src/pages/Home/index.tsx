@@ -1,7 +1,10 @@
-import { Links, Box } from "./styles";
+import { useNavigate } from "react-router-dom";
+import { CommonButton } from "../../components/CommonButton";
+import { Links, Box, SectionHome } from "./styles";
 
 
 export const Home = () => {
+  const navigate = useNavigate()
   return (
   <div>
     <Box>
@@ -11,8 +14,12 @@ export const Home = () => {
           <p><strong>Email:</strong> ficlek13@hotmail.com</p>
           <p><strong>Data:</strong> 01/03/1998</p>
           <p><strong>Senha:</strong> *********</p>
-        </section>        
+        </section>      
     </Box>
+    <SectionHome>
+    <CommonButton onClick={() => navigate('/editprofile')} label="Editar Conta"></CommonButton>
+    <CommonButton onClick={() => navigate('/signin')} label="Sair"></CommonButton>
+    </SectionHome>
     <Links>
       <p>Acesso á: <a href="http://localhost:3000/signin">SignIn</a></p>
       <p>Acesso á: <a href="http://localhost:3000/editprofile">EditProfile</a></p>

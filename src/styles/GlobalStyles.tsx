@@ -13,4 +13,10 @@ export default createGlobalStyle`
     font-size: 75px;
     font-weight: bold;
     }
+    h2{
+    color: #00c400;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    }
 `
