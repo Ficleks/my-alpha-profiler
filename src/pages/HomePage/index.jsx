@@ -9,16 +9,6 @@ import { useNavigate } from "react-router-dom";
 const HomePage = () => {
     const { logout, session, photo, getCookies } = useContext(AuthContext);
     const navigate = useNavigate();
-    // async function getData() {
-    //     const theUser = await getCookies();
-    //     setUserData(theUser);
-    // }
-
-    // getData();
-
-    //getCookies();
-
-    //console.log('user data', userData);
 
     const handleEdit = () => {
         getCookies();
@@ -29,14 +19,15 @@ const HomePage = () => {
         getCookies();
         logout();
     }
-    /*  */
 
-    const userName = session.name;//"Fulano";
+    const userName = session.name;
 
     return (
         <div className="container">
             <div className="head">
-                <img src={photo} width="64"/>
+                <div className="imglocal">
+                    <img src={photo} width="64"/>
+                </div>
                 <h1>Olá, {userName}!</h1>     
                 <div>
                     <Button onClick={handleEdit}>Editar</Button>

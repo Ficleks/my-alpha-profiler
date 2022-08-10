@@ -51,6 +51,9 @@
     border: none;
     margin-left: 0;
     transition: all 0.5s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
 }
 
 .edit-delete-btn:hover {
@@ -100,4 +103,10 @@
     height: 250px;
     width: 250px;
     border-radius: 1000px;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+    
 }

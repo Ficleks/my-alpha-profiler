@@ -68,6 +68,7 @@ const RegisterPage = () => {
                 </div>
                 <div className="actions">
                     <Button type="submit">Registrar</Button>
+                    <Button type="button" onClick={()=>{}}>Voltar</Button>
                 </div>
             </form>
         </div>
